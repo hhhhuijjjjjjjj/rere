@@ -1,0 +1,56 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("الصيد البري", "GrapeTheme")
+local Tab = Window:NewTab("mods")
+local Ta = Window:NewTab("اوتو صيد")
+local Section = Ta:NewSection("الهاك بواسطه i_5o5")
+local gf = Tab:NewSection("سرعه")
+Section:NewButton("بيع", "تبيع وانت بمكانك", function()
+-- سكربت الصيد الضب 
+local args = {
+    [1] = "SellAll"
+}
+
+game:GetService("ReplicatedStorage").Remotes.AnimalRemotes.RemoteS:FireServer(unpack(args))
+
+end)
+Section:NewToggle("صيد الضب", "يصيد لك الضب وانت بمكانك", function(state)
+    if state then
+    getgenv().dsd = true
+   if getgenv().dsd == true then
+     repeat wait()
+      
+
+local args = {
+    [1] = "ClaimDabb"
+}
+
+game:GetService("ReplicatedStorage").Remotes.AnimalRemotes.RemoteC:FireServer(unpack(args))
+
+    until getgenv().dsd == false
+    end
+    else
+        getgenv().dsd = false
+    end
+end)
+-- سكربت صيد الجربوع
+Section:NewToggle("صيد الجربوع", "يصيد الجربوع وانت بمكانك", function(state)
+    if state then
+       getgenv().sss = true
+       if  getgenv().sss == true then
+                repeat wait()
+        local args = {
+            [1] = "ClaimJerboa"
+        }
+        
+        game:GetService("ReplicatedStorage").Remotes.AnimalRemotes.RemoteC:FireServer(unpack(args))
+                
+         until getgenv().sss == false
+   end
+    else
+        getgenv().sss = false
+    end
+end)
+-- سكربت السرعه
+gf:NewSlider("سرعه لاعب", "تسريع لاعب", 500, 16, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
